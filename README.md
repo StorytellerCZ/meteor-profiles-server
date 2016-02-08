@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/StorytellerCZ/meteor-profiles-server.png?label=ready&title=Ready)](https://waffle.io/StorytellerCZ/meteor-profiles-server)
 Server package build on socialize:user-profile to add the following to the user profile:
 * Real name
 * Biography

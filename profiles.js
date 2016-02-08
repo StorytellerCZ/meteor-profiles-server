@@ -17,50 +17,7 @@ Profile.appendSchema({
   }
 })
 
-Meteor.users.after.insert(function(userId, document) {
-    let profile = {
-        userId:document._id
-    };
-
-    if(document.username){
-        profile.username = document.username;
-    }
-
-    Meteor.profiles.insert(profile);
-});
-
 Meteor.methods({
-  /**
-   * If user doesn't have profile collection, then make them one
-   * TODO: test
-   */
-  checkForProfile:function(username){
-    if(username === null){
-      userId = Meteor.userId()
-    }
-    if(username){
-      let obj = Meteor.profiles.find({username: username}).fetch()
-      if(obj.length === 0){
-        let document = Meteor.users({_id: userId})
-        if(document){
-          //create a new profile for the given user
-          let profile = {
-              userId:document._id
-          }
-
-          if(document.username){
-              profile.username = document.username;
-          }
-
-          Meteor.profile.insert(profile)
-        }
-
-      }
-      if(obj.length > 1){
-        console.log(Meteor.userId() + " has more then one profile documents!");
-      }
-    }
-  },
   updateAvatar:function(avatar){
     check(avatar, String)
     let profile = Meteor.profiles.findOne({userId: Meteor.userId()}).update({$set: {avatar: avatar}})

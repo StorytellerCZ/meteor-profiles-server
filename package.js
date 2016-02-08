@@ -13,7 +13,7 @@ Package.onUse(function(api) {
 
   api.addFiles(['profiles.js'])
 
-  api.imply(['socialize:base-model', 'socialize:user-model', 'socialize:user-profile'])
+  api.imply(['socialize:base-model@0.3.1', 'socialize:user-model@0.1.5', 'socialize:user-profile'])
 });
 
 Package.onTest(function(api) {

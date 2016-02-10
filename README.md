@@ -6,6 +6,8 @@ Server package build on socialize:user-profile to add the following to the user 
 
 This is server code only so that you can apply any client side package that you like. Check out storytellercz:profiles-react-materialize
 
+In addition friending between users is build in via socialize:friendships
+
 UNDER DEVELOPMENT
 
 Available methods:

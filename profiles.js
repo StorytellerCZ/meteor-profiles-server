@@ -43,7 +43,7 @@ Meteor.methods({
   },
   updateName:function(names){
     //TODO: .save() returns an error and object, even though it saves
-    let profile = Meteor.profiles.findOne({userId: Meteor.userId()})
+    let profile = Meteor.profiles.findOne({userId: Meteor.userId()})/*
     if(names.given){
       check(names.given, String)
       profile.set("givenName", names.given)
@@ -53,8 +53,12 @@ Meteor.methods({
       profile.set("familyName", names.family)
     }
     let result = profile.save()
+    */
+
+    let result = profile.update({$set: {givenName: names.given, familyName: names.family}})
+
     console.log(result);
-    if(result === undefined){
+    if(result){
       return true
     } else {
       return false

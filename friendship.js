@@ -35,7 +35,7 @@ Meteor.publish("friends", function (options) {
     mappings: [{
       key: 'friendId',
       collection: Meteor.users,
-      options:{fields:{username:true, avatarId:true, status:true}}
+      options:{fields:{username:true, status:true}}
     }]
   });
 });

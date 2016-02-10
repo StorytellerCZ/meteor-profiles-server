@@ -1,3 +1,6 @@
+/**
+ * DB Schema
+ */
 Profile.appendSchema({
   "biography": {
     type: String,

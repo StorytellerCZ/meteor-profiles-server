@@ -1,4 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/StorytellerCZ/meteor-profiles-server.png?label=ready&title=Ready)](https://waffle.io/StorytellerCZ/meteor-profiles-server)
+[![Stories in Ready](https://badge.waffle.io/StorytellerCZ/meteor-profiles-server.png?label=ready&title=Ready)](https://waffle.io/StorytellerCZ/meteor-profiles-server)[![Code Climate](https://codeclimate.com/github/StorytellerCZ/meteor-profiles-server/badges/gpa.svg)](https://codeclimate.com/github/StorytellerCZ/meteor-profiles-server)[![Test Coverage](https://codeclimate.com/github/StorytellerCZ/meteor-profiles-server/badges/coverage.svg)](https://codeclimate.com/github/StorytellerCZ/meteor-profiles-server/coverage)[![Issue Count](https://codeclimate.com/github/StorytellerCZ/meteor-profiles-server/badges/issue_count.svg)](https://codeclimate.com/github/StorytellerCZ/meteor-profiles-server)
 
 Server package build on socialize:user-profile to add the following to the user profile:
 * Real name

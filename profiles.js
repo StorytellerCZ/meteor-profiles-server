@@ -23,6 +23,7 @@ Profile.appendSchema({
 Meteor.methods({
   /**
    * Updates user's avatar
+   * @function call updateAvatar
    * @param {string} avatar
    * @returns {boolean}
    */
@@ -37,6 +38,7 @@ Meteor.methods({
   },
   /**
    * Updates user's biography
+   * @function call updateBiography
    * @param {string} bio
    * @returns {boolean}
    */
@@ -56,6 +58,7 @@ Meteor.methods({
   },
   /**
    * Updates user's name
+   * @function call updateName
    * @param {object} names object containing the given and family name {given: "firstname", family: "surname"}
    * @returns {boolean}
    */

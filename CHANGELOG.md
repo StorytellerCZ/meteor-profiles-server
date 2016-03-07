@@ -1,10 +1,11 @@
 # Changelog
 
-## v0.2.1 -
+## v0.3.0 - 2016/3/07
 
 ### New
 
 *   Added JSDocs
+*   User feed publishes
 
 ## v0.2.0 - 9.2.2016
 

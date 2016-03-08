@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3.1 - 2016/3/08
+
+### Fixes
+
+*   Added checks
+
 ## v0.3.0 - 2016/3/07
 
 ### New

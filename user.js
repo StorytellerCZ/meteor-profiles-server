@@ -4,5 +4,6 @@
  * @returns {pointer} MongoDB pointer to the user
  */
 Meteor.publish("getUser", function(userIdOrUsername){
+  check(userIdOrUsername, String)
   return Meteor.users.find({$or:[{_id:userIdOrUsername}, {username:userIdOrUsername}]}, {fields: {username: 1, createdAt: 1}})
 });

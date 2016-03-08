@@ -5,6 +5,8 @@
  * @returns {pointer}
  */
 Meteor.publish('feed', function(options) {
+  check(options, publicationOptionsSchema)
+
   let friendMap
 
   if(!this.userId){
@@ -19,8 +21,8 @@ Meteor.publish('feed', function(options) {
 
   options = options || {}
 
-  //only allow the limit and skip options
-  options = _.pick(options, "limit", "skip", "sort");
+  //only allow the limit, skip and sort options
+  options = _.pick(options, "limit", "skip", "sort")
 
   Meteor.publishWithRelations({
     handle: this,
@@ -53,6 +55,9 @@ Meteor.publish('feed', function(options) {
  * @returns {pointer}
  */
 Meteor.publish('posts', function(userId, options) {
+  check(userId, String)
+  check(options, publicationOptionsSchema)
+
   let friendMap
 
   if(!userId){
@@ -67,8 +72,8 @@ Meteor.publish('posts', function(userId, options) {
 
   options = options || {}
 
-  //only allow the limit and skip options
-  options = _.pick(options, "limit", "skip", "sort");
+  //only allow the limit, skip and sort options
+  options = _.pick(options, "limit", "skip", "sort")
 
   Meteor.publishWithRelations({
     handle: this,

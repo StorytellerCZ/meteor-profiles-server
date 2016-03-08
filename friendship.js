@@ -3,7 +3,7 @@
  */
 
 //Setup a schema so we can check the arguments to ensure application security
-var publicationOptionsSchema = new SimpleSchema({
+let publicationOptionsSchema = new SimpleSchema({
   limit:{
     type:Number,
     optional:true
@@ -16,7 +16,7 @@ var publicationOptionsSchema = new SimpleSchema({
     type:Number,
     optional:true
   }
-});
+})
 
 /**
  * Publish friend records with their related user records.
@@ -24,6 +24,11 @@ var publicationOptionsSchema = new SimpleSchema({
  * @param {object} options
  */
 Meteor.publish("friends", function(options){
+  check(options, Match.Optional({
+    limit: Number,
+    skip: Number,
+    sort: String
+  }))
   if(!this.userId){
     return this.ready();
   }
@@ -57,7 +62,7 @@ Meteor.publish('friendRequests', function(options){
 
   options = options || {};
 
-  check(options, publicationOptionsSchema);
+  check(options, publicationOptionsSchema)
 
   Meteor.publishWithRelations({
     handle: this,
@@ -78,6 +83,11 @@ Meteor.publish('friendRequests', function(options){
  * @param {object} options
  */
 Meteor.publish('ignoredFriendRequests', function(options){
+  check(options, Match.Optional({
+    limit: Number,
+    skip: Number,
+    sort: String
+  }))
   if(!this.userId){
     return this.ready();
   }
@@ -105,6 +115,11 @@ Meteor.publish('ignoredFriendRequests', function(options){
  * @param {object} options
  */
 Meteor.publish('outgoingFriendRequests', function(options){
+  check(options, Match.Optional({
+    limit: Number,
+    skip: Number,
+    sort: String
+  }))
  if(!this.userId){
     return this.ready();
  }

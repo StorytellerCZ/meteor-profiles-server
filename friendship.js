@@ -3,18 +3,18 @@
  */
 
 //Setup a schema so we can check the arguments to ensure application security
-let publicationOptionsSchema = new SimpleSchema({
+PublicationOptionsSchema = new SimpleSchema({
   limit:{
-    type:Number,
-    optional:true
+    type: Number,
+    optional: true
   },
   skip:{
-    type:Number,
-    optional:true
+    type: Number,
+    optional: true
   },
   sort:{
-    type:Number,
-    optional:true
+    type: Number,
+    optional: true
   }
 })
 
@@ -24,18 +24,13 @@ let publicationOptionsSchema = new SimpleSchema({
  * @param {object} options
  */
 Meteor.publish("friends", function(options){
-  check(options, Match.Optional({
-    limit: Number,
-    skip: Number,
-    sort: String
-  }))
   if(!this.userId){
     return this.ready();
   }
 
-  options = options || {};
+  options = options || {}
 
-  check(options, publicationOptionsSchema);
+  check(options, PublicationOptionsSchema)
 
   Meteor.publishWithRelations({
     handle: this,
@@ -47,8 +42,8 @@ Meteor.publish("friends", function(options){
       collection: Meteor.users,
       options:{fields:{username:true, status:true}}
     }]
-  });
-});
+  })
+})
 
 /**
  * Publish all friend requests to the current users.
@@ -57,12 +52,12 @@ Meteor.publish("friends", function(options){
  */
 Meteor.publish('friendRequests', function(options){
   if(!this.userId){
-    return this.ready();
+    return this.ready()
   }
 
-  options = options || {};
+  options = options || {}
 
-  check(options, publicationOptionsSchema)
+  check(options, PublicationOptionsSchema)
 
   Meteor.publishWithRelations({
     handle: this,
@@ -74,8 +69,8 @@ Meteor.publish('friendRequests', function(options){
       collection: Meteor.users,
       options:{fields:{username:true}}
     }]
-  });
-});
+  })
+})
 
 /**
  * Ignored friend requests to the current user.
@@ -83,18 +78,13 @@ Meteor.publish('friendRequests', function(options){
  * @param {object} options
  */
 Meteor.publish('ignoredFriendRequests', function(options){
-  check(options, Match.Optional({
-    limit: Number,
-    skip: Number,
-    sort: String
-  }))
   if(!this.userId){
-    return this.ready();
+    return this.ready()
   }
 
-  options = options || {};
+  options = options || {}
 
-  check(options, publicationOptionsSchema);
+  check(options, PublicationOptionsSchema)
 
   Meteor.publishWithRelations({
     handle: this,
@@ -106,8 +96,8 @@ Meteor.publish('ignoredFriendRequests', function(options){
       collection: Meteor.users,
       options:{fields:{username:true}}
     }]
-  });
-});
+  })
+})
 
 /**
  * Friend requests from the current user to other users.
@@ -115,18 +105,13 @@ Meteor.publish('ignoredFriendRequests', function(options){
  * @param {object} options
  */
 Meteor.publish('outgoingFriendRequests', function(options){
-  check(options, Match.Optional({
-    limit: Number,
-    skip: Number,
-    sort: String
-  }))
  if(!this.userId){
-    return this.ready();
+    return this.ready()
  }
 
- options = options || {};
+ options = options || {}
 
- check(options, publicationOptionsSchema);
+ check(options, publicationOptionsSchema)
 
  Meteor.publishWithRelations({
    handle: this,
@@ -138,5 +123,5 @@ Meteor.publish('outgoingFriendRequests', function(options){
      collection: Meteor.users,
      options:{fields:{username:true}}
    }]
- });
-});
+ })
+})

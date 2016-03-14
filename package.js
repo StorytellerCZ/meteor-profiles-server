@@ -13,8 +13,8 @@ Package.onUse(function(api) {
     'tmeasday:publish-with-relations@0.2.0', // TODO change for lepozepo:publish-with-relations
     'aldeed:collection2@2.9.0',
     'socialize:user-profile@0.2.0',
-    'socialize:friendships@0.4.2',
-    'socialize:feed@0.2.2'
+    'socialize:friendships@0.4.3',
+    'socialize:feed@0.2.3'
   ]);
 
   api.addFiles(['profiles.js']);
@@ -26,7 +26,7 @@ Package.onUse(function(api) {
 
   api.imply([
     'socialize:base-model@0.4.0',
-    'socialize:user-model@0.1.6',
+    'socialize:user-model@0.1.7',
     'socialize:user-profile',
     'socialize:friendships',
     'socialize:commentable@0.2.1',

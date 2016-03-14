@@ -1,13 +1,11 @@
 # Changelog
 
-## v0.3.2 - 2016/3/14
+## v0.3.1 - 2016/3/14
 
 ### Updates
 
 *   Updated dependencies
 *   Added publish functions that were removed from the base socialize packages
-
-## v0.3.1 - 2016/3/08
 
 ### Fixes
 

@@ -111,7 +111,7 @@ Meteor.publish('outgoingFriendRequests', function(options){
 
  options = options || {}
 
- check(options, publicationOptionsSchema)
+ check(options, PublicationOptionsSchema)
 
  Meteor.publishWithRelations({
    handle: this,

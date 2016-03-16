@@ -1,10 +1,16 @@
 # Changelog
 
+## v0.3.3 - 2016/3/16
+
+## Fixes
+
+*   publicationOptionsSchema is not defined
+
 ## v0.3.2 - 2016/3/14
 
 ### Fixes
 
-*   ProfilesCollection not defined
+*   ProfilesCollection is not defined
 
 ## v0.3.1 - 2016/3/14
 

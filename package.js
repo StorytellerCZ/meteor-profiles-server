@@ -1,6 +1,6 @@
 Package.describe({
   name: 'storyteller:profiles-server',
-  version: '0.3.2',
+  version: '0.3.3',
   summary: 'Server side for the storyteller:profiles-react-materialize package',
   git: 'https://github.com/StorytellerCZ/meteor-profiles-server.git',
   documentation: 'README.md'

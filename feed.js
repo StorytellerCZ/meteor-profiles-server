@@ -1,3 +1,17 @@
+import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
+import { BaseModel } from 'meteor/socialize:base-model';
+import { PostableModel } from 'meteor/socialize:postable';
+import SimpleSchema from 'simpl-schema';
+
+const UserFeed = new Mongo.Collection('feed');
+
+export class Feed extends PostableModel(BaseModel) {
+  constructor(doc){
+    super(doc);
+  }
+}
+
 /**
  * Feed for the current user
  * @function publication feed

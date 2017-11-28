@@ -1,8 +1,12 @@
 # Changelog
 
+## v1.0.0-alpha.1
+
+Adjusting everything for Socialize v1 release.
+
 ## v0.3.3 - 2016/3/16
 
-## Fixes
+### Fixes
 
 *   publicationOptionsSchema is not defined
 

@@ -17,7 +17,10 @@ Package.onUse(function(api) {
     'socialize:postable@1.0.0',
   ]);
 
-  api.addFiles(['profiles.js']);
+  api.addFiles([
+    'profiles.js',
+    'profiles_schema.js'
+  ]);
   api.addFiles([
     'user.js',
     'friendship.js',
@@ -31,7 +34,7 @@ Package.onUse(function(api) {
     'socialize:friendships@1.0.0', // TODO friending and blocking
     'socialize:commentable@1.0.0',
     'socialize:likeable@1.0.0',
-    // TODO feed (now postable) related packages and functionality
+    'socialize:postable@1.0.0',
   ])
 });
 

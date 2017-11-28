@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
+import { ProfilesCollection } from 'meteor/socialize:user-profile';
 
 export default function () {
   /**
@@ -9,7 +10,7 @@ export default function () {
    */
   Meteor.publish('profile.for', (userIdOrUsername) => {
     check(userIdOrUsername, String);
-    return Meteor.profiles.find(
+    return ProfilesCollection.find(
       { $or: [ { userId: userIdOrUsername }, { username: userIdOrUsername } ] },
       { limit: 1 }
     );
@@ -21,7 +22,7 @@ export default function () {
    * TODO pass a list of fields in
    */
   Meteor.publish('profile', function () {
-    return Meteor.profiles.find(
+    return ProfilesCollection.find(
       { userId: this.userId },
       { limit: 1 }
     );

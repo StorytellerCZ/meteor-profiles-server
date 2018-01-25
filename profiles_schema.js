@@ -4,12 +4,12 @@ import { PostableModel } from 'meteor/socialize:postable';
 import { LinkableModel } from 'meteor/socialize:linkable-model';
 
 export class PostableProfile extends PostableModel(Profile){
-  constructor(document){
-      super(document);
+  getFullName() {
+    return `${this.givenName} ${this.familyName}`;
   }
 
-  fullName() {
-    return `${this.givenName} ${this.familyName}`;
+  getCountryCode() {
+    return this.country.code;
   }
 }
 
@@ -20,6 +20,17 @@ LinkableModel.registerParentModel(PostableProfile);
 /**
  * DB Schema for Profile
  */
+
+const userCountry = new SimpleSchema({
+  name: {
+    type: String
+  },
+  code: {
+    type: String,
+    regEx: /^[A-Z]{2}$/
+  }
+});
+
 Profile.appendSchema({
   biography: {
     type: SimpleSchema.oneOf(String, Object),
@@ -43,6 +54,28 @@ Profile.appendSchema({
     defaultValue: true,
     // privacy by default on
   },
+  birthday: {
+    type: Date,
+    optional: true
+  },
+  gender: {
+    type: String,
+    allowedValues: ['male', 'female'],
+    optional: true
+  },
+  organization: {
+    type: String,
+    optional: true
+  },
+  website: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Url,
+    optional: true
+  },
+  country: {
+    type: userCountry,
+    optional: true
+  }
 });
 
 export default Profile;

@@ -7,11 +7,11 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.3');
+  api.versionsFrom('1.4');
   api.use(['ecmascript', 'meteor', 'check', 'accounts-password']);
   api.use([
     'reywood:publish-composite@1.5.2',
-    'aldeed:collection2@2.10.0',
+    'aldeed:collection2-core@2.1.0',
     'socialize:user-profile@1.0.0',
     'socialize:friendships@1.0.0',
     'socialize:postable@1.0.0',
@@ -28,7 +28,7 @@ Package.onUse(function(api) {
   ], "server");
 
   api.imply([
-    'socialize:base-model@1.1.0',
+    'socialize:base-model@1.1.1',
     'socialize:user-model@1.0.0',
     'socialize:user-profile@1.0.0',
     'socialize:friendships@1.0.0', // TODO friending and blocking

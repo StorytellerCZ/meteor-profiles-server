@@ -1,5 +1,13 @@
 import { Meteor } from 'meteor/meteor';
-import SimpleSchema from 'simpl-schema';
+import { FriendsCollection } from 'meteor/socialize:friendships';
+import { CommentsCollection } from 'meteor/socialize:commentable';
+import { PostsCollection } from 'meteor/socialize:postable';
+
+const optionsArgumentCheck = {
+  limit: Match.Optional(Number),
+  skip: Match.Optional(Number),
+  sort: Match.Optional(Object),
+};
 
 /**
  * Feed for the current user
@@ -14,7 +22,7 @@ Meteor.publish('feed', function (options) {
     return this.ready();
   }
 
-  friendMap = Meteor.friends.find({userId: this.userId}, {fields: {friendId: true}}).map(function (friend) {
+  friendMap = FriendsCollection.find({userId: this.userId}, {fields: {friendId: true}}).map(function (friend) {
     return friend.friendId;
   });
 
@@ -22,14 +30,11 @@ Meteor.publish('feed', function (options) {
 
   options = options || {};
 
-  check(options, PublicationOptionsSchema);
-
-  // only allow the limit, skip and sort options
-  options = _.pick(options, 'limit', 'skip', 'sort');
+  check(options, optionsArgumentCheck);
 
   Meteor.publishWithRelations({
     handle: this,
-    collection: Meteor.posts,
+    collection: PostsCollection,
     filter: {$or: [ {userId: {$in: friendMap}}, {posterId: {$in: friendMap}} ]},
     options,
     mappings: [ {
@@ -39,7 +44,7 @@ Meteor.publish('feed', function (options) {
     }, {
       reverse: true,
       key: 'linkedObjectId',
-      collection: Meteor.comments,
+      collection: CommentsCollection,
       options: {sort: {date: -1}, limit: 3},
       mappings: [ {
         key: 'userId',
@@ -67,7 +72,7 @@ Meteor.publish('posts', function (userId, options) {
     return this.ready();
   }
 
-  friendMap = Meteor.friends.find({posterId: userId}, {fields: {friendId: true}}).map(function (friend) {
+  friendMap = FriendsCollection.find({posterId: userId}, {fields: {friendId: true}}).map(function (friend) {
     return friend.friendId;
   });
 
@@ -75,14 +80,11 @@ Meteor.publish('posts', function (userId, options) {
 
   options = options || {};
 
-  check(options, PublicationOptionsSchema);
-
-  // only allow the limit, skip and sort options
-  options = _.pick(options, 'limit', 'skip', 'sort');
+  check(options, optionsArgumentCheck);
 
   Meteor.publishWithRelations({
     handle: this,
-    collection: Meteor.posts,
+    collection: PostsCollection,
     filter: {$or: [ {userId}, {posterId: userId} ]},
     options,
     mappings: [ {
@@ -92,7 +94,7 @@ Meteor.publish('posts', function (userId, options) {
     }, {
       reverse: true,
       key: 'linkedObjectId',
-      collection: Meteor.comments,
+      collection: CommentsCollection,
       options: {sort: {date: -1}, limit: 3},
       mappings: [ {
         key: 'userId',

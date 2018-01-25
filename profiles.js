@@ -11,7 +11,7 @@ export default function () {
   Meteor.publish('profile.for', (userIdOrUsername) => {
     check(userIdOrUsername, String);
     return ProfilesCollection.find(
-      { $or: [ { userId: userIdOrUsername }, { username: userIdOrUsername } ] },
+      { $or: [ { _id: userIdOrUsername }, { username: userIdOrUsername } ] },
       { limit: 1 }
     );
   });
@@ -23,7 +23,7 @@ export default function () {
    */
   Meteor.publish('profile', function () {
     return ProfilesCollection.find(
-      { userId: this.userId },
+      { _id: this.userId },
       { limit: 1 }
     );
   });

@@ -1,23 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import SimpleSchema from 'simpl-schema';
+import { FriendsCollection, RequestsCollection } from 'meteor/socialize:friendships';
 
 export default function () {
   // Setup a schema so we can check the arguments to ensure application security
-  const publicationOptionsSchema = new SimpleSchema({
-    limit: {
-      type: Number,
-      optional: true,
-    },
-    skip: {
-      type: Number,
-      optional: true,
-    },
-    sort: {
-      type: Number,
-      optional: true,
-    },
-  });
+  const publicationOptionsSchema = {
+    limit: Match.Optional(Number),
+    skip: Match.Optional(Number),
+    sort: Match.Optional(Object)
+  };
 
   /**
    * Publish friend records with their related user records.
@@ -35,7 +26,7 @@ export default function () {
 
     return {
       find() {
-        return Meteor.friends.find({ userId: this.userId, friendId: { $ne: this.userId } }, options);
+        return FriendsCollection.find({ userId: this.userId, friendId: { $ne: this.userId } }, options);
       },
       children: [
         {
@@ -63,7 +54,7 @@ export default function () {
 
     return {
       find() {
-        return Meteor.requests.find({
+        return RequestsCollection.find({
           userId: this.userId,
           denied: { $exists: false },
           ignored: { $exists: false },
@@ -95,7 +86,7 @@ export default function () {
 
     return {
       find() {
-        return Meteor.requests.find({
+        return RequestsCollection.find({
           userId: this.userId,
           denied: { $exists: false },
           ignored: { $exists: true },
@@ -127,7 +118,7 @@ export default function () {
 
     return {
       find() {
-        return Meteor.requests.find({ requesterId: this.userId, denied: { $exists: false } }, options);
+        return RequestsCollection.find({ requesterId: this.userId, denied: { $exists: false } }, options);
       },
       children: [
         {

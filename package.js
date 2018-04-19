@@ -11,7 +11,7 @@ Package.onUse(function(api) {
   api.use(['ecmascript', 'meteor', 'check', 'accounts-password']);
   api.use([
     'reywood:publish-composite@1.5.2',
-    'aldeed:collection2-core@2.1.0',
+    'aldeed:collection2@3.0.0',
     'socialize:user-profile@1.0.0',
     'socialize:friendships@1.0.0',
     'socialize:postable@1.0.0',
